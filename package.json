@@ -1,0 +1,18 @@
+{
+  "name": "errbreak",
+  "dependencies": {
+    "express": "*",
+    "jasmine-node":"*",
+    "jasmine-node-exec":"*",
+    "hbs":"*",
+    "grunt": "*",
+    "grunt-cli":"*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "backbone":"*",
+    "underscore":"*"
+  },
+  "scripts": {
+    "watch": "grunt watch"
+  }
+}
