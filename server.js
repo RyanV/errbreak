@@ -1,7 +1,8 @@
 var path = require('path'),
   dashboard = require("./app/controllers/dashboard"),
   express = require("express"),
-  app = express();
+  app = express(),
+  PORT = process.env.PORT || "3000";
 
 app.configure(function() {
   app.set("views", path.join("app", "views"));
@@ -11,5 +12,6 @@ app.configure(function() {
 
 app.get("/", dashboard.index);
 
-app.listen(3000);
-console.info("Server started and listening on port 3000");
+app.listen(PORT, function() {
+  console.log("Server started and listening on port: ")
+});

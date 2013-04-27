@@ -10,7 +10,8 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-watch": "*",
     "backbone":"*",
-    "underscore":"*"
+    "underscore":"*",
+    "pg": "*"
   },
   "scripts": {
     "watch": "grunt watch"
