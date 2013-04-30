@@ -1,20 +1,28 @@
 var path = require('path'),
+  _ = require("underscore")._,
   express = require("express"),
   app = express(),
   env = require("./lib/env"),
-//  PORT = process.env.PORT || 3000,
   grunt = require("grunt"),
   config = grunt.file.readYAML("config/database.yml")[env.name()],
+  glob = require("glob"),
   pg = require("pg"),
   client = new pg.Client(config);
 
 client.connect();
 
+
+// App Configuration for all environments
 app.configure(function() {
   app.set("views", path.join("app", "views"));
   app.set('view engine', 'hbs');
   app.use(express.static(__dirname + '/public'));
   app.use(express.bodyParser());
+});
+
+// App configuration for development environment
+app.configure("development", function() {
+  app.use(express.static(__dirname + '/spec/client/'));
 });
 
 app.get("/", function(req, res) {
@@ -45,6 +53,16 @@ app.post("/notifications", function(req, res) {
     }
 
     res.end();
+  });
+});
+
+app.get("/jasmine", function(req, res) {
+  glob("spec/client/**/*_spec.js", function(err, files) {
+    var f = _.map(files, function(file) {
+      return file.replace("spec/client/", "");
+    });
+    res.locals = {spec_files: f};
+    res.render("spec_runner.hbs");
   });
 });
 
