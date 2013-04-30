@@ -11,7 +11,8 @@
     "grunt-contrib-watch": "*",
     "backbone":"*",
     "underscore":"*",
-    "pg": "*"
+    "pg": "*",
+    "moment": "*"
   },
   "scripts": {
     "watch": "grunt watch"

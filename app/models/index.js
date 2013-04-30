@@ -1,4 +1,4 @@
-var Backbone = require("backbone");
+var Backbone = require("../../lib/backbone");
 
 var Model = Backbone.Model.extend({
 
