@@ -10,6 +10,8 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-watch": "*",
     "grunt-contrib-concat": "*",
+    "glob": "*",
+    "kexec": "*",
     "backbone":"*",
     "underscore":"*",
     "pg": "*",
