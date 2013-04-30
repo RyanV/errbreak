@@ -1,23 +1,20 @@
 var _ = require("underscore")._,
-  path = require("path"),
-  errBreakFiles = require("../../app/assets/javascripts/manifest.js");
+  path = require("path");
 
+
+var errBreakFiles = require("../../app/assets/javascripts/manifest.js");
 errBreakFiles = _.map(errBreakFiles, function(f) {
   return path.join("app/assets/javascripts/", f);
 });
 
+var vendorFiles = require("../../vendor/assets/javascripts/manifest.js");
+vendorFiles = _.map(vendorFiles, function(f) {
+  return path.join("vendor/assets/javascripts/", f);
+});
+
 module.exports = {
   framework: {
-    src: [
-      "vendor/assets/javascripts/jquery.min.js",
-      "vendor/assets/javascripts/jquery-ui.min.js",
-      "vendor/assets/javascripts/bootstrap.min.js",
-      "vendor/assets/javascripts/underscore.js",
-      "vendor/assets/javascripts/backbone.js",
-      "vendor/assets/javascripts/handlebars.js",
-      "vendor/assets/javascripts/moment.min.js",
-      "vendor/assets/javascripts/ua-parser.min.js"
-    ],
+    src: vendorFiles,
     dest: "public/assets/javascripts/framework.js"
   },
   errbreak: {
