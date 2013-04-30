@@ -1,43 +1,16 @@
 module.exports = function(grunt) {
+  var appFiles = require("./app/assets/javascripts/manifest.js");
   grunt.initConfig({
-    concat: {
-      framework: {
-        src: [
-          "vendor/assets/javascripts/jquery.min.js",
-          "vendor/assets/javascripts/jquery-ui.min.js",
-          "vendor/assets/javascripts/bootstrap.min.js",
-          "node_modules/underscore/underscore.min.js",
-          "node_modules/backbone/backbone.min.js",
-          "vendor/assets/javascripts/handlebars.js",
-          "vendor/assets/javascripts/moment.js"
-        ],
-        dest: "public/assets/javascripts/framework.js"
-      },
-      stylesheets: {
-        src: [
-          "vendor/assets/stylesheets/bootstrap.min.css",
-          "vendor/assets/stylesheets/bootstrap-responsive.min.css",
-          "vendor/assets/stylesheets/font-awesome.min.css",
-          "app/assets/stylesheets/application.css"
-        ],
-        dest: "public/assets/stylesheets/application.css"
-      }
-    },
-    watch: {
-      assets: {
-        files: [
-          "vendor/assets/javascripts/**/*.js",
-          "vendor/assets/stylesheets/**/*.css",
-          "app/assets/javascripts/**/*.js",
-          "app/assets/stylesheets/**/*.css"
-        ],
-        tasks: ["concat"]
-      }
-    }
+    concat: require("./grunt/config/concat"),
+    watch: require("./grunt/config/watch"),
+    jshint: require("./grunt/config/jshint")
   });
 
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-jshint");
+
+  grunt.registerTask("default", ["jshint:beforeConcat"]);
 
   var build = require("./grunt/tasks/build");
   grunt.registerTask("build:assets",
