@@ -50,6 +50,7 @@ CREATE TABLE notifications (
     id integer NOT NULL,
     message text,
     environment text,
+    user_agent text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

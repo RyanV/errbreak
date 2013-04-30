@@ -7,7 +7,9 @@ module.exports = function(grunt) {
           "vendor/assets/javascripts/jquery-ui.min.js",
           "vendor/assets/javascripts/bootstrap.min.js",
           "node_modules/underscore/underscore.min.js",
-          "node_modules/backbone/backbone.min.js"
+          "node_modules/backbone/backbone.min.js",
+          "vendor/assets/javascripts/handlebars.js",
+          "vendor/assets/javascripts/moment.js"
         ],
         dest: "public/assets/javascripts/framework.js"
       },

@@ -23,9 +23,11 @@ app.get("/", function(req, res) {
       row.created_at = new Date(row.created_at).getTime();
       return row;
     });
+
     res.locals = {
       notifications: rows
     };
+
     res.render("dashboard/index.hbs");
   });
 });
