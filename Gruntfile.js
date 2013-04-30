@@ -20,10 +20,22 @@ module.exports = function(grunt) {
         ],
         dest: "public/assets/stylesheets/application.css"
       }
+    },
+    watch: {
+      assets: {
+        files: [
+          "vendor/assets/javascripts/**/*.js",
+          "vendor/assets/stylesheets/**/*.css",
+          "app/assets/javascripts/**/*.js",
+          "app/assets/stylesheets/**/*.css"
+        ],
+        tasks: ["concat"]
+      }
     }
   });
 
   grunt.loadNpmTasks("grunt-contrib-concat");
+  grunt.loadNpmTasks("grunt-contrib-watch");
 
   var build = require("./grunt/tasks/build");
   grunt.registerTask("build:assets",
