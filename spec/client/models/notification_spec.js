@@ -14,7 +14,7 @@ describe("ErrBreak.Models.Notification", function() {
   describe("#toJSON", function() {
     it("should return the json data formatted for use", function(){
       expect(notification.toJSON()).toEqual({
-        "created_at": '16 hours ago',
+        "created_at": '19 hours ago',
         "user_agent": "USER_AGENT",
         "message": "MESSAGE",
         "url": "fake.com/products"
