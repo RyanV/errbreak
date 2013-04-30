@@ -15,7 +15,8 @@
     "backbone":"*",
     "underscore":"*",
     "pg": "*",
-    "moment": "*"
+    "moment": "*",
+    "ua-parser-js": "*"
   },
   "scripts": {
     "watch": "grunt watch"

@@ -51,6 +51,7 @@ CREATE TABLE notifications (
     message text,
     environment text,
     user_agent text,
+    url text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

@@ -56,15 +56,19 @@ app.post("/notifications", function(req, res) {
   });
 });
 
-app.get("/jasmine", function(req, res) {
-  glob("spec/client/**/*_spec.js", function(err, files) {
-    var f = _.map(files, function(file) {
-      return file.replace("spec/client/", "");
+// If development environment, create jasmine route for running html/client specs
+if (env.isDevelopment()) {
+  app.get("/jasmine", function(req, res) {
+    glob("spec/client/**/*_spec.js", function(err, files) {
+      var f = _.map(files, function(file) {
+        return file.replace("spec/client/", "");
+      });
+      res.locals = {spec_files: f};
+      res.render("spec_runner.hbs");
     });
-    res.locals = {spec_files: f};
-    res.render("spec_runner.hbs");
   });
-});
+}
+
 
 app.listen(80, function() {
   console.log("Server started and listening on port: " + 80)

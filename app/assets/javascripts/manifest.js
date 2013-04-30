@@ -3,5 +3,8 @@ module.exports = [
   "lib/Model.js",
   "lib/Collection.js",
   "lib/View.js",
-  "views/app.js"
+  "lib/singleton.js",
+  "views/app.js",
+  "models/notification.js",
+  "collections/notifications.js"
 ];

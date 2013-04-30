@@ -15,7 +15,8 @@ module.exports = {
       "vendor/assets/javascripts/underscore.js",
       "vendor/assets/javascripts/backbone.js",
       "vendor/assets/javascripts/handlebars.js",
-      "vendor/assets/javascripts/moment.js"
+      "vendor/assets/javascripts/moment.min.js",
+      "vendor/assets/javascripts/ua-parser.min.js"
     ],
     dest: "public/assets/javascripts/framework.js"
   },

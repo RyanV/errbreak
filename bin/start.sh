@@ -1,4 +1,5 @@
 #!/bin/bash
+export NODE_ENV="development"
 bin/compile_templates.sh
 grunt concat
 grunt watch &
