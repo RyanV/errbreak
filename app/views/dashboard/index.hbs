@@ -94,7 +94,17 @@
     </div>
   </div>
 </div>
+<script src="/assets/javascripts/application.js" type="text/javascript"></script>
 <script src="/assets/javascripts/framework.js" type="text/javascript"></script>
+<script src="/assets/templates.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(function() {
+    _.each(ErrBreak.templates, function(value, key) {
+      ErrBreak.templates[key.replace(".hbs", "")] = value;
+      delete ErrBreak.templates[key]
+    });
+  })
+</script>
 </body>
 </html>
 
