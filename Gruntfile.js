@@ -1,12 +1,41 @@
 module.exports = function(grunt) {
   grunt.initConfig({
-    watch: {
-      files: ["app/**/*.js", "server.js"],
-      tasks: ["server:start"]
+    concat: {
+      framework: {
+        src: [
+          "vendor/assets/javascripts/jquery.min.js",
+          "vendor/assets/javascripts/jquery-ui.min.js",
+          "vendor/assets/javascripts/bootstrap.min.js",
+          "node_modules/underscore/underscore.min.js",
+          "node_modules/backbone/backbone.min.js"
+        ],
+        dest: "public/assets/javascripts/framework.js"
+      },
+      stylesheets: {
+        src: [
+          "vendor/assets/stylesheets/bootstrap.min.css",
+          "vendor/assets/stylesheets/bootstrap-responsive.min.css",
+          "vendor/assets/stylesheets/font-awesome.min.css",
+          "app/assets/stylesheets/application.css"
+        ],
+        dest: "public/assets/stylesheets/application.css"
+      }
     }
   });
 
-  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-concat");
+
+  var build = require("./grunt/tasks/build");
+  grunt.registerTask("build:assets",
+    "Builds assets for client side use",
+    build.assets
+  );
+
+  grunt.registerTask("build:vendor",
+    "Builds vendor files for client side use",
+    build.vendor
+  );
+
 
   grunt.registerTask("db:create", "creates the database", function() {
     this.async();
