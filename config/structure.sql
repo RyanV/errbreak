@@ -52,6 +52,8 @@ CREATE TABLE notifications (
     environment text,
     user_agent text,
     url text,
+    resolved boolean,
+    stack_trace json,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

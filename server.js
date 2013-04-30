@@ -33,7 +33,9 @@ app.get("/", function(req, res) {
     });
 
     res.locals = {
-      notifications: rows
+      data: JSON.stringify({
+        notifications: rows
+      })
     };
 
     res.render("dashboard/index.hbs");
@@ -41,19 +43,35 @@ app.get("/", function(req, res) {
 });
 
 app.post("/notifications", function(req, res) {
-  var body = req.body;
-  var message = body.message;
-  var environment = body.environment;
-  client.query("insert into notifications(message, environment) values($1, $2)", [message, environment], function(err) {
-    res.status(200);
-    if (err) {
-      res.json({status: 500});
-    } else {
-      res.json({status: 200});
-    }
+  var body = req.body,
+    message = body.message || null,
+    environment = body.environment || null,
+    user_agent = body.user_agent || null,
+    stack_trace = body.stack_trace;
 
-    res.end();
-  });
+  if (stack_trace) {
+    try {
+      stack_trace = JSON.stringify(body.stack_trace)
+    } catch (e) {
+      stack_trace = null;
+    }
+  } else {
+    stack_trace = null;
+  }
+
+  client.query("INSERT INTO notifications" +
+    "(message, environment, user_agent, stack_trace, created_at, updated_at) " +
+    "VALUES($1, $2, $3, $4, now(), now())",
+    [message, environment, user_agent, stack_trace],
+    function(err) {
+      res.status(200);
+      if (err) {
+        res.json({status: 500});
+      } else {
+        res.json({status: 200});
+      }
+      res.end();
+    });
 });
 
 // If development environment, create jasmine route for running html/client specs
