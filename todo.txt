@@ -1,0 +1,2 @@
+group errors
+keep track of deploys and tag errors with deploys (use git sha)

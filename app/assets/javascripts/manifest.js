@@ -4,7 +4,7 @@ module.exports = [
   "lib/Collection.js",
   "lib/View.js",
   "lib/singleton.js",
-  "views/app.js",
   "models/notification.js",
-  "collections/notifications.js"
+  "collections/notifications.js",
+  "views/app_view.js"
 ];

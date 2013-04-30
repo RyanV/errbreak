@@ -7,5 +7,11 @@ module.exports = {
       "app/assets/stylesheets/**/*.css"
     ],
     tasks: ["concat"]
+  },
+  templates: {
+    files: [
+      "app/assets/templates/**/*.hbs"
+    ],
+    tasks: ["build:templates"]
   }
 };

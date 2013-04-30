@@ -12,7 +12,12 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["jshint:beforeConcat"]);
 
+  grunt.registerTask("build:templates", "builds templates", function() {
+    require("kexec")("bin/compile_templates.sh")
+  });
+
   var build = require("./grunt/tasks/build");
+
   grunt.registerTask("build:assets",
     "Builds assets for client side use",
     build.assets

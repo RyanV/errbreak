@@ -6,21 +6,18 @@ describe("ErrBreak.Models.Notification", function() {
     notification = new ErrBreak.Models.Notification({
       user_agent: "USER_AGENT",
       created_at: now,
-      message: "MESSAGE"
+      message: "MESSAGE",
+      url: "fake.com/products"
     });
   });
 
-  describe("#presenter", function() {
-    var presentedNotification;
-    beforeEach(function() {
-      presentedNotification = notification.presenter();
-    });
-
+  describe("#toJSON", function() {
     it("should return the json data formatted for use", function(){
-      expect(presentedNotification).toEqual({
+      expect(notification.toJSON()).toEqual({
         "created_at": '16 hours ago',
-        "user_agent": "",
-        "url": "url"
+        "user_agent": "USER_AGENT",
+        "message": "MESSAGE",
+        "url": "fake.com/products"
       });
     });
   });

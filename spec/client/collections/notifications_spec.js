@@ -13,4 +13,8 @@ describe("ErrBreak.Collections.Notifications", function() {
   it("#getInstance", function() {
     expect(notifications instanceof ErrBreak.Collections.Notifications).toEqual(true);
   });
+
+  it("#model", function() {
+    expect(notifications.model() instanceof ErrBreak.Models.Notification).toEqual(true);
+  })
 });
