@@ -30,4 +30,4 @@ module.exports = {
     ],
     dest: "public/assets/stylesheets/application.css"
   }
-}
+};

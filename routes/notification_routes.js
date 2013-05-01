@@ -15,7 +15,7 @@ module.exports = {
 
     if (stack_trace) {
       try {
-        stack_trace = JSON.stringify(body.stack_trace)
+        stack_trace = JSON.stringify(body.stack_trace);
       } catch (e) {
         stack_trace = null;
       }

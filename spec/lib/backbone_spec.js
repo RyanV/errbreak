@@ -1,11 +1,13 @@
 var support = require("support");
 support.execFile(__filename);
-var Backbone = support.require("lib/backbone")
-  , TestModel = Backbone.Model.extend({
-    tableName: "notifications",
-    validate: function() {
-    }
-  });
+
+var Backbone = support.require("lib/backbone");
+
+var TestModel = Backbone.Model.extend({
+  tableName: "notifications",
+  validate: function() {
+  }
+});
 
 describe("Backbone", function() {
   var testModel;
@@ -14,7 +16,9 @@ describe("Backbone", function() {
 
   function tearDown(cb) {
     deleteAll(function(err, result) {
-      if (err) throw err;
+      if (err) {
+        throw err;
+      }
       rowCountShouldEql(0, cb);
     });
   }
@@ -29,7 +33,9 @@ describe("Backbone", function() {
 
   function rowCountShouldEql(intVal, cb) {
     getRowCount(function(err, result) {
-      if (err) throw err;
+      if (err) {
+        throw err;
+      }
       expect(result.rowCount).toEqual(intVal);
       cb();
     });
@@ -75,13 +81,13 @@ describe("Backbone", function() {
     });
 
     it("should create a new row in the database", function(done) {
-      testModel.save({},function(err, result) {
+      testModel.save({}, function(err, result) {
         rowCountShouldEql(1, done);
       });
     });
 
     it("should set the id to the model", function(done) {
-      testModel.save({},function(err, model) {
+      testModel.save({}, function(err, model) {
         rowCountShouldEql(1, function() {
           expect(testModel.get("id")).toEqual(jasmine.any(Number));
           done();

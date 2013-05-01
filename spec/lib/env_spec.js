@@ -15,7 +15,7 @@ describe("env", function() {
     it("returns false if environment is not production", function() {
       spyOn(env, "name").andReturn("development");
       expect(env.isProduction()).toEqual(false);
-    })
+    });
   });
 
   describe("isDevelopment", function() {

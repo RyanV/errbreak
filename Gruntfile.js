@@ -10,10 +10,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-jshint");
 
-  grunt.registerTask("default", ["jshint:beforeConcat"]);
+  grunt.registerTask("default", ["jshint:all"]);
 
   grunt.registerTask("build:templates", "builds templates", function() {
-    require("kexec")("bin/compile_templates.sh")
+    require("kexec")("bin/compile_templates.sh");
   });
 
   var build = require("./grunt/tasks/build");
@@ -28,7 +28,6 @@ module.exports = function(grunt) {
     build.vendor
   );
 
-
   grunt.registerTask("db:create", "creates the database", function() {
     this.async();
     var env = require("./lib/env");
@@ -37,7 +36,7 @@ module.exports = function(grunt) {
       throw "Cannot run grunt db:create in " + env.name();
     }
     var config = grunt.file.readYAML("config/database.yml")[env.name()];
-    client = new pg.Client(config);
+    var client = new pg.Client(config);
     client.connect();
     client.query("CREATE TABLE IF NOT EXISTS $1(id SERIAL PRIMARY KEY)", [config.database]);
   });

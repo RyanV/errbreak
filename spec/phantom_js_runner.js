@@ -30,7 +30,7 @@ colors.setTheme({
 var projectRoot = path.resolve(".");
 
 function rootJoin() {
-  return path.join.apply(this, [projectRoot].concat(Array.prototype.slice.call(arguments)))
+  return path.join.apply(this, [projectRoot].concat(Array.prototype.slice.call(arguments)));
 }
 
 var spec_path = rootJoin("spec/client")
@@ -52,7 +52,7 @@ function getSpecFiles(cb) {
       cb(err);
     } else {
       spec_files = _.map(spec_files, function(file) {
-        return file.replace(spec_path, "")
+        return file.replace(spec_path, "");
       });
       cb(null, spec_files);
     }

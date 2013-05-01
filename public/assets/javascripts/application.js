@@ -24,17 +24,17 @@ var ErrBreak = {
 (function() {
   ErrBreak.View = Backbone.View.extend({
     renderTemplate: function(path, opts) {
-      return ErrBreak.templates[path](opts)
+      return ErrBreak.templates[path](opts);
     }
   });
 }());
 
-ErrBreak.singleton = function(klass) {
-  klass.getInstance = function() {
-    if (!klass._instance) {
-      klass._instance = new klass();
+ErrBreak.singleton = function(Klass) {
+  Klass.getInstance = function() {
+    if (!Klass._instance) {
+      Klass._instance = new Klass();
     }
-    return klass._instance;
+    return Klass._instance;
   };
 };
 

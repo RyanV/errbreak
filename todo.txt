@@ -4,4 +4,4 @@ Validations:
   data_types
   presence
 
-
+Create framework similar to how Backbone functions, but more lightweight

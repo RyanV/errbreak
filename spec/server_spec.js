@@ -3,7 +3,7 @@ support.execFile(__filename);
 
 var request = support.request,
   grunt = require("grunt"),
-  config = grunt.file.readYAML("config/database.yml")["development"],
+  config = grunt.file.readYAML("config/database.yml").development,
   pg = require("pg"),
   client = new pg.Client(config);
 
@@ -42,7 +42,7 @@ describe("POST /notifications", function() {
     };
     request.post("/notifications", data, function(res) {
       expect(res.statusCode).toEqual(200);
-      done()
+      done();
     });
   });
 

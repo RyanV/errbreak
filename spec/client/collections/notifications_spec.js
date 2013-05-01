@@ -16,5 +16,5 @@ describe("ErrBreak.Collections.Notifications", function() {
 
   it("#model", function() {
     expect(notifications.model() instanceof ErrBreak.Models.Notification).toEqual(true);
-  })
+  });
 });
