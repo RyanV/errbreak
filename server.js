@@ -59,6 +59,6 @@ if (env.isDevelopment()) {
 }
 
 
-app.listen(80, function() {
-  console.log("Server started and listening on port: " + 80)
+app.listen(3020, function() {
+  console.log("Server started and listening on port: " + 3020)
 });

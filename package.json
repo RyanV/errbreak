@@ -1,6 +1,7 @@
 {
   "name": "errbreak",
   "dependencies": {
+    "colors":"*",
     "express": "*",
     "jasmine-node":"*",
     "jasmine-node-exec":"*",
@@ -11,12 +12,16 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-concat": "*",
     "glob": "*",
+    "mustache": "*",
     "kexec": "*",
     "backbone":"*",
     "underscore":"*",
     "pg": "*",
     "moment": "*",
     "ua-parser-js": "*"
+  },
+  "devDependencies": {
+    "phantom": "*"
   },
   "scripts": {
     "watch": "grunt watch"
