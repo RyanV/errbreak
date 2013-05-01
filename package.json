@@ -1,26 +1,26 @@
 {
   "name": "errbreak",
   "dependencies": {
-    "colors":"*",
+    "backbone":"*",
     "express": "*",
-    "jasmine-node":"*",
-    "jasmine-node-exec":"*",
-    "hbs":"*",
     "grunt": "*",
     "grunt-cli":"*",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-watch": "*",
     "grunt-contrib-concat": "*",
     "glob": "*",
-    "mustache": "*",
-    "kexec": "*",
-    "backbone":"*",
-    "underscore":"*",
-    "pg": "*",
+    "hbs":"*",
     "moment": "*",
-    "ua-parser-js": "*"
+    "mustache": "*",
+    "pg": "*",
+    "ua-parser-js": "*",
+    "underscore":"*"
   },
   "devDependencies": {
+    "colors":"*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "jasmine-node":"*",
+    "jasmine-node-exec":"*",
+    "kexec": "*",
     "phantom": "*"
   },
   "scripts": {
