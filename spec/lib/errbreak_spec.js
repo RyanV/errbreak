@@ -24,6 +24,13 @@ describe("ErrBreak.Model", function() {
     expect(model.attributes).toEqual({});
   });
 
+  describe("constructor", function() {
+    it("allows a user to pass in attributes to be initialized with", function() {
+      var model = new ErrBreak.Model({foo: "bar"});
+      expect(model.get("foo")).toEqual("bar");
+    });
+  });
+
   describe("#initialize", function() {
     it("gets called when the constructor is invoked", function() {
       spyOn(ErrBreak.Model.prototype, "initialize").andCallThrough();
@@ -71,6 +78,51 @@ describe("ErrBreak.Model", function() {
       expect(model.get("a")).toBeFalsy();
       expect(model.get("c")).toBeFalsy();
     });
+  });
+
+  describe(".extend", function() {
+    it("returns a new constructor/proto object", function() {
+      var SubClass = ErrBreak.Model.extend();
+      expect(SubClass.prototype.constructor.__super__).toEqual(ErrBreak.Model.prototype);
+    });
+
+    it("allows 'class' inheritance from parent to child", function() {
+      var ParentClass = ErrBreak.Model.extend({
+        foo: function() {
+          return "bar";
+        }
+      });
+
+      var ChildClass = ParentClass.extend();
+      var child = new ChildClass();
+      expect(child.foo).toBeDefined();
+      expect(child.foo()).toEqual("bar");
+    });
+  });
+
+  describe("validations", function() {
+    describe("#isValid", function() {
+      it("returns true without validations", function() {
+        expect(model.isValid()).toEqual(true);
+      });
+    });
+
+    describe("", function() {
+
+    });
+  });
+});
+
+xdescribe("ErrBreak.Collection", function() {
+  var Col;
+
+  beforeEach(function() {
+    Col = new ErrBreak.Collection();
+  });
+
+  it("tableName")
+  describe(".all", function() {
+    it("returns ")
   });
 });
 
