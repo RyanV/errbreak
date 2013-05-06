@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Errbreak</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{& stylesheet_link_tag 'application.css' }}
+</head>
+<body>
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="#">Errbreak</a>
+
+      <!-- Everything you want hidden at 940px or less, place within here -->
+      <div class="nav-collapse collapse">
+        <!-- .nav, .navbar-search, .navbar-form, etc -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<div id="main">
+  <a href="/notifications">Notifications</a>
+</div>
+  {{{body}}}
+  {{& javascript_include_tag 'framework.js' }}
+  {{& javascript_include_tag 'application.js' }}
+  {{& javascript_include_tag 'templates.js' }}
+<script type="text/javascript">
+  $(function() {
+    _.each(ErrBreak.templates, function(value, key) {
+      ErrBreak.templates[key.replace(".hbs", "")] = value;
+      delete ErrBreak.templates[key]
+    });
+
+    ErrBreak.init({{{data}}});
+  })
+</script>
+</body>
+</html>

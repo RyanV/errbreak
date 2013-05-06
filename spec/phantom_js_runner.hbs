@@ -8,8 +8,70 @@
   <link rel="stylesheet" type="text/css" href="spec_support/jasmine-2.0.0-alpha/jasmine.css">
 
   <script type="text/javascript" src="spec_support/jasmine-2.0.0-alpha/jasmine.js"></script>
-  <script type="text/javascript" src="spec_support/jasmine-2.0.0-alpha/jasmine-html.js"></script>
-  <script type="text/javascript" src="spec_support/jasmine-2.0.0-alpha/boot.js"></script>
+  <script type="text/javascript" src="spec_support/jasmine-json-reporter.js"></script>
+  <script type="text/javascript">
+    (function() {
+      var env = jasmine.getEnv();
+      var jasmineInterface = {
+        describe: function(description, specDefinitions) {
+          return env.describe(description, specDefinitions);
+        },
+
+        xdescribe: function(description, specDefinitions) {
+          return env.xdescribe(description, specDefinitions);
+        },
+
+        it: function(desc, func) {
+          return env.it(desc, func);
+        },
+
+        xit: function(desc, func) {
+          return env.xit(desc, func);
+        },
+
+        beforeEach: function(beforeEachFunction) {
+          return env.beforeEach(beforeEachFunction);
+        },
+
+        afterEach: function(afterEachFunction) {
+          return env.afterEach(afterEachFunction);
+        },
+
+        expect: function(actual) {
+          return env.expect(actual);
+        },
+
+        pending: function() {
+          return env.pending();
+        },
+
+        addMatchers: function(matchers) {
+          return env.addMatchers(matchers);
+        },
+
+        spyOn: function(obj, methodName) {
+          return env.spyOn(obj, methodName);
+        },
+
+        clock: env.clock,
+        setTimeout: env.clock.setTimeout,
+        clearTimeout: env.clock.clearTimeout,
+        setInterval: env.clock.setInterval,
+        clearInterval: env.clock.clearInterval,
+
+        jsApiReporter: new jasmine.JsApiReporter(jasmine)
+      };
+      function extend(destination, source) {
+        for (var property in source) destination[property] = source[property];
+        return destination;
+      }
+      extend(window, jasmineInterface);
+      env.addReporter(new jasmine.JSONReporter());
+      window.onload = function() {
+        env.execute();
+      }
+    }())
+  </script>
 
 
   <!-- include source files here... -->

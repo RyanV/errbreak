@@ -69,39 +69,13 @@ app.get('/jasmine_phantom', function(req, res) {
 app.listen(PORT);
 
 var jasmineResultsParser = function() {
-  try {
-    var $body = $(document.body),
-      results = $body.find('.alert .bar.failed').text(),
-      failures = $body.find(".symbol-summary .failed");
-
-    if (failures.size() === 0) {
-      return {
-        passed: true,
-        results: results
-      }
-    } else {
-      var $failures = $body.find(".results .failures"),
-        spec = $failures.find(".failed a").text(),
-        error = $failures.find('.result-message').text(),
-        stack = $failures.find('.stack-trace').text();
-
-      return {
-        passed: false,
-        results: results,
-        failedSpec: spec,
-        errorMessage: error,
-        stackTrace: stack
-      };
-    }
-  } catch (err) {
-    return "Failed to load the jasmine html test runner";
-  }
+  return JSON.parse(document.body.innerText);
 };
 
 var jasmineSpecLogger = function(result) {
   var results = result.results;
 
-  if (result.passed) {
+  if (!result.failed.length) {
     console.log("All Specs Passed! %s".success, results);
   } else {
     var jasmineFile = /jasmine.*\.js\:/;
@@ -130,11 +104,11 @@ var jasmineSpecLogger = function(result) {
 
 var jasminePhantomUrl = "http://localhost:" + PORT + "/jasmine_phantom";
 
-phantom.create(function(ph) {
-  return ph.createPage(function(page) {
-    return page.open(jasminePhantomUrl, function(status) {
-      return page.evaluate(jasmineResultsParser, jasmineSpecLogger);
-    });
-  });
-});
-
+//phantom.create(function(ph) {
+//  return ph.createPage(function(page) {
+//    return page.open(jasminePhantomUrl, function(status) {
+//      return page.evaluate(jasmineResultsParser, jasmineSpecLogger);
+//    });
+//  });
+//});
+//

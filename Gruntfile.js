@@ -1,9 +1,23 @@
+var sys = require('sys'),
+  cp = require("child_process"),
+  fork = cp.fork,
+  exec = cp.exec,
+  child;
+
 module.exports = function(grunt) {
   var appFiles = require("./app/assets/javascripts/manifest.js");
   grunt.initConfig({
     concat: require("./grunt/config/concat"),
     watch: require("./grunt/config/watch"),
-    jshint: require("./grunt/config/jshint")
+    jshint: require("./grunt/config/jshint"),
+    spec: {
+      runServerSpecs: {
+        dir: "spec/server"
+      },
+      runLibrarySpecs: {
+        dir: "spec/lib"
+      }
+    }
   });
 
   grunt.loadNpmTasks("grunt-contrib-concat");
@@ -12,11 +26,35 @@ module.exports = function(grunt) {
 
   grunt.registerTask("default", ["jshint:all"]);
 
-  grunt.registerTask("build:templates", "builds templates", function() {
-    require("kexec")("bin/compile_templates.sh");
+
+  var spec = require("./grunt/tasks/spec");
+
+  grunt.registerMultiTask("spec", "runs different spec configurations", function() {
+    this.async();
+    var options = this.options();
+    var directory = this.data.dir || "spec";
+    var runner = this.data.runner || "./node_modules/jasmine-node/bin/jasmine-node";
+    var command = [runner, directory].join(" ");
+    var terminal = require('child_process').spawn('bash');
+
+    terminal.stdout.on('data', function (data) {
+      sys.print(data);
+    });
+
+    terminal.on('exit', function (code) {
+      console.log('child process exited with code ' + code);
+    });
+
+    terminal.stdin.write(command);
+    terminal.stdin.end();
   });
 
+//  grunt.registerTask("spec:runServerSpecs", "run server side specs", spec.runServerSpecs);
+//  grunt.registerTask("spec:runLibSpecs", "run library specs", spec.runLibrarySpecs);
+
   var build = require("./grunt/tasks/build");
+
+  grunt.registerTask("build:templates", "builds templates", build.templates);
 
   grunt.registerTask("build:assets",
     "Builds assets for client side use",
@@ -28,16 +66,6 @@ module.exports = function(grunt) {
     build.vendor
   );
 
-  grunt.registerTask("db:create", "creates the database", function() {
-    this.async();
-    var env = require("./lib/env");
-    var pg = require("pg");
-    if (!env.isIn("development", "test")) {
-      throw "Cannot run grunt db:create in " + env.name();
-    }
-    var config = grunt.file.readYAML("config/database.yml")[env.name()];
-    var client = new pg.Client(config);
-    client.connect();
-    client.query("CREATE TABLE IF NOT EXISTS $1(id SERIAL PRIMARY KEY)", [config.database]);
-  });
+  var db = require("./grunt/tasks/db");
+  grunt.registerTask("db:create", "creates the database", db.create);
 };

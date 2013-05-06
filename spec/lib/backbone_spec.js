@@ -42,7 +42,7 @@ describe("Backbone", function() {
   }
 
   beforeEach(function(done) {
-    process.env.NODE_ENV = "test";
+//    process.env.NODE_ENV = "test";
     pgClient = support.require("lib/database").client();
     testModel = new TestModel({foo: "bar", message: "TEST"});
     tableName = testModel.tableName;
@@ -53,7 +53,7 @@ describe("Backbone", function() {
 
   afterEach(function(done) {
     pgClient.query("delete from " + tableName, function() {
-      process.env.NODE_ENV = "development";
+//      process.env.NODE_ENV = "development";
       done();
     });
   });

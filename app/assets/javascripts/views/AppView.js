@@ -6,7 +6,6 @@
       return this;
     },
     render: function() {
-      console.info(this.notifications.toJSON());
       this.$el.html(this.renderTemplate("app", {notifications: this.notifications.toJSON()}));
       return this;
     }

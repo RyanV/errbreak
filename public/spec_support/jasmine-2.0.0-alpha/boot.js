@@ -77,6 +77,10 @@
 
   env.addReporter(jasmineInterface.jsApiReporter);
   env.addReporter(htmlReporter);
+  if (jasmine.JSONReporter) {
+    env.addReporter(new jasmine.JSONReporter());
+  }
+
 
   var specFilter = new jasmine.HtmlSpecFilter({
     filterString: function() { return queryString.getParam("spec"); }

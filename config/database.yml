@@ -1,10 +1,13 @@
-development: &DEVELOPMENT
+development:
   database: errbreak_dev
   user: postgres
   port: 5432
   password:
   host: localhost
 
-test: &TEST
+test:
   database: errbreak_test
-  <<: *DEVELOPMENT
+  user: postgres
+  port: 5432
+  password:
+  host: localhost

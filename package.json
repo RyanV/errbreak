@@ -12,7 +12,10 @@
     "mustache": "*",
     "pg": "*",
     "ua-parser-js": "*",
-    "underscore":"*"
+    "underscore":"*",
+    "FastLegS": "git://github.com/RyanV/FastLegS.git#master",
+    "orm":"*",
+    "yaml-node": "git://github.com/RyanV/yaml-node.git#master"
   },
   "devDependencies": {
     "colors":"*",

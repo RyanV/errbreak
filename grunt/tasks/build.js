@@ -1,7 +1,8 @@
 var grunt = require("grunt"),
   path = require("path"),
   fs = require("fs"),
-  _ = require("underscore")._;
+  _ = require("underscore")._,
+  kexec = require("kexec");
 
 function rootRequire(mod) {
   return require(path.join("../..", mod));
@@ -33,4 +34,8 @@ module.exports.assets = function() {
 //  var baseDir = "app/assets/javascripts";
 //  var filesMap = rootRequire(path.join(baseDir, "build.js"));
 
+};
+
+module.exports.templates = function() {
+  kexec("bin/compile_templates.sh");
 };

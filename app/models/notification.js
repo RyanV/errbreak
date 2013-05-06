@@ -1,7 +1,8 @@
-var Model = require("../models");
+var ErrBreak = require("../../lib/errbreak");
 
-var Notification = Model.extend({
-  tableName: "notifications"
+var Notification = ErrBreak.Model.extend({
+  tableName: "notifications",
+  primaryKey: "id"
 });
 
 module.exports = Notification;

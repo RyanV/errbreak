@@ -2,8 +2,18 @@ var routes = require("./routes"),
   path = require('path'),
   express = require("express"),
   app = express(),
-  env = require("./lib/env");
+  env = require("./lib/env"),
+  ErrBreak = require("./lib/errbreak"),
+  Config = require("./config"),
+  hbs = require("./lib/hbs"),
+  PORT = 3000;
 
+
+/**
+ * Connect to the database using config/database.yml and
+ * current environment
+ */
+ErrBreak.connect(Config.Database.connectionOptions());
 
 /**
  *
@@ -20,10 +30,10 @@ var allowCrossDomain = function(req, res, next) {
  * App Configuration for all environments
  */
 app.configure(function() {
-  app.set("views", path.join("app", "views"));
   app.set('view engine', 'hbs');
   app.use(express.static(__dirname + '/public'));
   app.use(express.bodyParser());
+  app.use(app.router);
   app.use(allowCrossDomain);
 });
 
@@ -37,8 +47,9 @@ app.configure("development", function() {
 /**
  * Admin interface
  */
-app.get("/", routes.dashboard.index);
+app.get("/", routes.home.index);
 
+app.get("/notifications", routes.dashboard.index);
 /**
  * Main post endpoint for notifications/errors
  * post body ex:
@@ -59,6 +70,6 @@ if (env.isDevelopment()) {
 }
 
 
-app.listen(3020, function() {
-  console.log("Server started and listening on port: " + 3020)
+app.listen(PORT, function() {
+  console.log("Server started and listening on port: " + PORT)
 });
