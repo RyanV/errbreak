@@ -50,6 +50,7 @@ app.configure("development", function() {
 app.get("/", routes.home.index);
 
 app.get("/notifications", routes.dashboard.index);
+
 /**
  * Main post endpoint for notifications/errors
  * post body ex:

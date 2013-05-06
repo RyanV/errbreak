@@ -1,17 +1,11 @@
-var Config = require("../config"),
-  Database = Config.Database;
+var path = require("path"),
+  Notification = require(path.join(__dirname, "../app/models/notification"));
 
 module.exports = {
   index: function(req, res) {
-    var connection = Database._connection;
-    var Notifications = connection.models.notifications;
-    Notifications.all(function(err, results) {
-      console.info(results[0].created_at);
-      res.locals = {
-        data: JSON.stringify({
-          notifications: results
-        })
-      };
+    Notification.find({}, function(err, results) {
+      var data = JSON.stringify({ notifications: results });
+      res.locals = { data: data };
       res.render("dashboard/index.hbs");
     });
   }
