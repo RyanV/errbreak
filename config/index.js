@@ -1,16 +1,10 @@
 var YAML = require("yaml-node"),
   Utils = require("../lib/utils"),
   path = require("path"),
-  env = require("../lib/env"),
-  ORM = require("orm");
+  env = require("../lib/env");
 
 
 var Database = module.exports.Database = {
-  ORM: require("orm"),
-  connect: function(callback) {
-    Database._connection = Database.ORM.connect(Database.connectionString(), callback);
-  },
-  _initialized: false,
   connectionOptions: function(environment) {
     var yamlConfiguration = YAML.read(path.join(__dirname, "database.yml"));
     return environment ? yamlConfiguration[environment] : yamlConfiguration;
