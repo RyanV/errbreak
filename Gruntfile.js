@@ -5,9 +5,7 @@ var sys = require('sys'),
   child;
 
 module.exports = function(grunt) {
-//  var appFiles = require("./app/assets/javascripts/manifest.js");
   grunt.initConfig({
-//    concat: require("./grunt/config/concat"),
     watch: require("./grunt/config/watch"),
     jshint: require("./grunt/config/jshint"),
     spec: {
@@ -20,7 +18,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-jshint");
 
@@ -37,11 +34,11 @@ module.exports = function(grunt) {
     var command = [runner, directory].join(" ");
     var terminal = require('child_process').spawn('bash');
 
-    terminal.stdout.on('data', function (data) {
+    terminal.stdout.on('data', function(data) {
       sys.print(data);
     });
 
-    terminal.on('exit', function (code) {
+    terminal.on('exit', function(code) {
       console.log('child process exited with code ' + code);
     });
 
@@ -86,9 +83,8 @@ module.exports = function(grunt) {
     var assetmap = root.require("client/manifest");
     var javascripts = assetmap.javascripts;
     var stylesheets = assetmap.stylesheets;
-    var templates = assetmap.templates;
 
-    _.each(javascripts, function(options, outputfile) {
+    function compileAssets(options, outputfile) {
       var loadPath = options.loadPath || "";
       var assetsDir = root.join("client", loadPath);
       var destination = root.join("public/assets", outputfile);
@@ -114,6 +110,10 @@ module.exports = function(grunt) {
 
       // Print a success message.
       grunt.log.writeln('File "' + destination + '" created.');
-    });
+    }
+
+    _.each(javascripts, compileAssets);
+    _.each(stylesheets, compileAssets);
+    grunt.task.run('build:templates');
   });
 };

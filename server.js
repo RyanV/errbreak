@@ -1,11 +1,11 @@
-var routes = require("./routes"),
+var routes = require("./server/routes"),
   path = require('path'),
   express = require("express"),
   app = express(),
-  env = require("./lib/env"),
-  ErrBreak = require("./lib/errbreak"),
+  env = require("./server/lib/env"),
+  ErrBreak = require("./server/lib/errbreak"),
   Config = require("./config"),
-  hbs = require("./lib/hbs"),
+  hbs = require("./server/lib/hbs"),
   PORT = 3000;
 
 
@@ -31,6 +31,7 @@ var allowCrossDomain = function(req, res, next) {
  */
 app.configure(function() {
   app.set('view engine', 'hbs');
+  app.set('views', 'server/views');
   app.use(express.static(__dirname + '/public'));
   app.use(express.bodyParser());
   app.use(app.router);

@@ -1,7 +1,6 @@
-var support = require("support");
-support.execFile(__filename);
+var support = require("support").exec(__filename);
 
-var ErrBreak = support.require("lib/errbreak");
+var ErrBreak = support.require("server/lib/errbreak");
 
 describe("ErrBreak", function() {
   it("should be defined", function() {
@@ -9,20 +8,18 @@ describe("ErrBreak", function() {
   });
 
   describe("_connection", function() {
-    var connectionOptions = {
-      user: "postgres",
-      port: 5432,
-      database: "errbreak_test",
-      host: "localhost"
-    };
-
-    beforeEach(function() {
-      expect(ErrBreak._connection).toBeFalsy();
-      ErrBreak.connect(connectionOptions);
-    });
-
     it("should set the conection instance", function(done) {
-      expect(ErrBreak._connection).toBeTruthy();
+      ErrBreak.disconnect();
+      var connectionOptions = {
+        user: "postgres",
+        port: 5432,
+        database: "errbreak_test",
+        host: "localhost"
+      };
+
+      expect(ErrBreak._connected).toEqual(false);
+      ErrBreak.connect(connectionOptions);
+      expect(ErrBreak._connected).toEqual(true);
       done();
     });
   });

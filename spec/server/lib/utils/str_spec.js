@@ -1,6 +1,5 @@
-require("jasmine-node-exec").exec(__filename);
-var support = require("support")
-  , Str = support.require("lib/utils/str")
+var support = require("support").exec(__filename)
+  , Str = support.require("server/lib/utils/str")
   ;
 
 describe("Utils.Str", function() {

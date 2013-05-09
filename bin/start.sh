@@ -16,7 +16,7 @@ function compileTemplates {
 }
 
 function buildClientJs {
-  grunt concat
+  grunt compile
 }
 
 function watchAssetsForChange {

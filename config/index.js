@@ -1,7 +1,7 @@
 var YAML = require("yaml-node"),
-  Utils = require("."),
+  Utils = require("../server/lib/utils"),
   path = require("path"),
-  env = require("../lib/env");
+  env = require("../server/lib/env");
 
 
 var Database = module.exports.Database = {

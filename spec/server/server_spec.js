@@ -1,6 +1,4 @@
-var support = require("support");
-support.execFile(__filename);
-
+var support = require("support").exec(__filename);
 var request = support.request,
   grunt = require("grunt"),
   config = grunt.file.readYAML("config/database.yml").development,

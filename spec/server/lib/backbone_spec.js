@@ -1,7 +1,6 @@
-var support = require("support");
-support.execFile(__filename);
+var support = require("support").exec(__filename);
 
-var Backbone = support.require("lib/backbone");
+var Backbone = support.require("server/lib/backbone");
 
 var TestModel = Backbone.Model.extend({
   tableName: "notifications",
@@ -9,7 +8,9 @@ var TestModel = Backbone.Model.extend({
   }
 });
 
-describe("Backbone", function() {
+// pending until i figureout which orm to use
+// might delete since errbreak.model is doing well on itsown
+xdescribe("Backbone", function() {
   var testModel;
   var asyncSpy, callbackSpy, tableName;
   var pgClient;
@@ -43,7 +44,7 @@ describe("Backbone", function() {
 
   beforeEach(function(done) {
 //    process.env.NODE_ENV = "test";
-    pgClient = support.require("lib/database").client();
+    pgClient = support.require("server/lib/database").client();
     testModel = new TestModel({foo: "bar", message: "TEST"});
     tableName = testModel.tableName;
     asyncSpy = spyOn(testModel, "async").andCallThrough();

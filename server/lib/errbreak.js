@@ -1,7 +1,7 @@
 var _ = require("underscore")._
   , path = require('path')
   , slice = Array.prototype.slice
-  , Config = require(path.join(__dirname, "../config"))
+  , Config = require(path.join(__dirname, "../../config"))
   , FastLegSBase = require('FastLegS')
   , FastLegS = new FastLegSBase('pg')
   ;
@@ -21,6 +21,16 @@ _.extend(ErrBreak, {
   _connect: function(connectionParams) {
     FastLegS.connect(connectionParams);
     ErrBreak._connected = true;
+  },
+  disconnect: function() {
+    if (ErrBreak._connected) {
+      FastLegS.client && FastLegS.client.disconnect();
+      ErrBreak._connected = false;
+    }
+  },
+  _disconnect: function() {
+    FastLegS.client && FastLegS.client.disconnect();
+    ErrBreak._connected = false;
   },
   connectionProxy: function() {
     return FastLegS;

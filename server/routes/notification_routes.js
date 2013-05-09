@@ -1,5 +1,5 @@
 var path = require("path"),
-  Notification = require(path.join(__dirname, "../app/models/notification"));
+  Notification = require(path.join(__dirname, "../models/notification"));
 
 module.exports = {
   create: function(req, res) {

@@ -1,14 +1,13 @@
-require("jasmine-node-exec").exec(__filename);
+var support = require('support').exec(__filename);
+
 var path = require('path')
-  , configPath = path.join(__dirname, "../../config")
-  , Config = require(configPath)
-  , Database = Config.Database
+  , Config = support.require("config")
   ;
 
 describe("Config", function() {
   describe("Config.Database", function() {
     it("#yamlConfig", function() {
-      var yml = Database.connectionOptions();
+      var yml = Config.Database.connectionOptions();
       expect(yml.constructor.name).toEqual("Object");
       expect(yml.development).toBeDefined();
       expect(yml.test).toBeDefined();
@@ -22,9 +21,9 @@ describe("Config", function() {
         port: 5432,
         host: 'localhost'
       };
-      spyOn(Database, 'connectionOptions').andReturn(connectionOptions);
-      var str = Database.connectionString();
-      expect(Database.connectionOptions).toHaveBeenCalledWith('test');
+      spyOn(Config.Database, 'connectionOptions').andReturn(connectionOptions);
+      var str = Config.Database.connectionString();
+      expect(Config.Database.connectionOptions).toHaveBeenCalledWith('test');
       expect(str).toEqual("postgres://user@localhost:5432/dbname");
     });
   })

@@ -1,7 +1,6 @@
-var support = require("support");
-support.execFile(__filename);
+var support = require("support").exec(__filename);
 
-var ErrBreak = support.require("lib/errbreak");
+var ErrBreak = support.require("server/lib/errbreak");
 
 describe("ErrBreak.Validator", function() {
   var Validator, Model;

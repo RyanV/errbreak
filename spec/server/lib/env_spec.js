@@ -1,10 +1,9 @@
-var support = require("support");
-support.execFile(__filename);
+var support = require("support").exec(__filename);
 
 describe("env", function() {
   var env;
   beforeEach(function() {
-    env = support.require("lib/env");
+    env = support.require("server/lib/env");
   });
 
   describe("isProduction", function() {
