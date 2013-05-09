@@ -1,5 +1,5 @@
 var YAML = require("yaml-node"),
-  Utils = require("../lib/utils"),
+  Utils = require("."),
   path = require("path"),
   env = require("../lib/env");
 

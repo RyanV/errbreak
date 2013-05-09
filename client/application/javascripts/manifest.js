@@ -1,6 +1,6 @@
 module.exports = [
   "errbreak.js",
-  "events/index",
+  "events/index.js",
   "lib/singleton.js",
   "lib/datastore.js",
   "lib/Model.js",

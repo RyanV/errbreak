@@ -2,7 +2,7 @@ var grunt = require("grunt"),
   path = require("path"),
   fs = require("fs"),
   _ = require("underscore")._,
-  kexec = require("kexec");
+  shell = require("shelljs");
 
 function rootRequire(mod) {
   return require(path.join("../..", mod));
@@ -37,5 +37,5 @@ module.exports.assets = function() {
 };
 
 module.exports.templates = function() {
-  kexec("bin/compile_templates.sh");
+  shell.exec("handlebars client/application/templates/* --namespace ErrBreak.templates --root client/application/templates -f public/assets/templates.js");
 };

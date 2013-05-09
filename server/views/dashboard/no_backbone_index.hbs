@@ -1,0 +1,40 @@
+#dashboard/no_backbone_index.hbs
+<div class="container-fluid padded">
+  <div class="span2" style="background: #f0f8ff;">
+    <!--Sidebar content-->
+  </div>
+  <div class="span10">
+    <div class="box">
+      <div class="box-header">
+        <div class="title">Acceptance</div>
+      </div>
+
+      <div class="box-content padded">
+        <div class="row-fluid">
+          <div class="span12">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th class="span8">Message & Location</th>
+                <th class="span2">Environment</th>
+                <th class="span2">Deploy</th>
+                <th class="span2">Created</th>
+              </tr>
+              </thead>
+              <tbody>
+                {{#notifications}}
+                <tr>
+                  <td class="span6">{{& link_to message relative_path}}</td>
+                  <td class="span2">{{environment}}</td>
+                  <td class="span2"></td>
+                  <td class="span2">{{created_at}}</td>
+                </tr>
+                {{/notifications}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
